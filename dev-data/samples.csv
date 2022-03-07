@@ -1,0 +1,11 @@
+﻿texto,email,array,booleano
+Sample 1,correo1@gmail.com,uno,TRUE
+Sample 2,correo2@gmail.com,uno,FALSE
+Sample 3,correo3@gmail.com,uno,FALSE
+Sample 4,correo4@gmail.com,uno,TRUE
+Sample 5,correo5@gmail.com,uno,FALSE
+Sample 6,correo6@gmail.com,uno,FALSE
+Sample 7,correo7@gmail.com,uno,TRUE
+Sample 8,correo8@gmail.com,uno,FALSE
+Sample 9,correo9@gmail.com,uno,TRUE
+Sample 10,correo10@gmail.com,uno,TRUE
