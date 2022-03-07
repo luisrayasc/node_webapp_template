@@ -5,24 +5,24 @@ const express = require('express');
 
 //Importamos los controladores que serán la función callback de cada ruta
 const {
-    getAllUsers,
-    createUser,
-    getUser,
-    updateUser,
-    deleteUser,
-    updateMe,
-    deleteMe,
-    getMe,
+  getAllUsers,
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  updateMe,
+  deleteMe,
+  getMe,
 } = require('../controllers/userController');
 
 const {
-    signup,
-    login,
-    forgotPassword,
-    resetPassword,
-    updatePassword,
-    protect,
-    restrictTo,
+  signup,
+  login,
+  forgotPassword,
+  resetPassword,
+  updatePassword,
+  protect,
+  restrictTo,
 } = require('../controllers/authController');
 
 const router = express.Router();
