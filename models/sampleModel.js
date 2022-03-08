@@ -7,26 +7,20 @@ const validator = require('validator'); // utils para validación
 const sampleSchema = new mongoose.Schema({
   texto: {
     type: String,
-    required: [true, 'user must have a name'],
+    required: [true, 'field is required'],
   },
 
   email: {
     type: String,
-    required: [true, 'user must have an email'],
+    required: [true, 'email is required'],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
+    validate: [validator.isEmail, 'provide a valid email'],
   },
 
-  array: {
+  enum: {
     type: String,
     enum: ['uno', 'dos', 'tres'],
-  },
-
-  booleano: {
-    type: Boolean,
-    default: true,
-    select: false,
   },
 });
 

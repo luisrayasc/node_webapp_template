@@ -4,10 +4,14 @@
 const mongoose = require('mongoose'); // ODM para mongodb
 const fs = require('fs'); // Interactuar con el filesystem
 const dotenv = require('dotenv'); // Para variavles env
+const chalk = require('chalk'); // colores en la terminal
+
+// Modelos
 const Sample = require('../models/sampleModel');
 
 // Archivo CSV
 const csv = fs.readFileSync(`${__dirname}/samples.csv`).toString();
+console.log(csv);
 const delimiter = ',';
 
 // ------------------- Carga de ENV --------------------------------
@@ -20,8 +24,8 @@ const database = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
 // Usamos mongoose para establecer la conexión
 mongoose
   .connect(database, {
-    // Mensajes para notas de depreciación
-    dbName: process.env.NODE_ENV,
+    // Opciones
+    dbName: 'development',
     retryWrites: true,
     w: 'majority',
     useNewUrlParser: true,
@@ -29,7 +33,9 @@ mongoose
   })
   // La conexión entrega una promesa
   .then(() => {
-    console.log(chalk.green('DB connection successful'));
+    console.log(
+      chalk.green(`Conexión existosa a la BD ${process.env.NODE_ENV}`)
+    );
   })
   // En caso de no cumplirse la promesa atrapamos el error
   .catch((error) => {
@@ -43,7 +49,7 @@ const csvToArray = function (str, delimiter) {
   // slice from start of text to the first \n index
   // use split to create an array from string by delimiter
   // const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
-  const headers = ['texto', 'email', 'array', 'booleano'];
+  const headers = ['texto', 'email', 'enum'];
 
   // slice from \n index + 1 to the end of the text
   // use split to create an array of each csv value row
@@ -57,7 +63,7 @@ const csvToArray = function (str, delimiter) {
   const arr = rows.map(function (row) {
     const values = row.split(delimiter);
     const el = headers.reduce(function (object, header, index) {
-      object[header] = values[index];
+      object[header] = values[index].trim();
       return object;
     }, {});
     return el;
